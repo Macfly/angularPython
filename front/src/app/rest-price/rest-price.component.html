@@ -1,0 +1,4 @@
+<button mat-raised-button (click)="onRefreshGet()">refresh price get</button>
+<p [ngClass]="{'positive' : stockGet.change > 0, 'negative' : stockGet.change < 0}">Price: {{ stockGet.last }}</p>
+<button mat-raised-button color="primary" (click)="onRefreshPost()">refresh price post</button>
+<p [ngClass]="{'positive' : stockPost.change > 0, 'negative' : stockPost.change < 0}">Price: {{ stockPost.last }}</p>
