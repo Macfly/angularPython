@@ -14,4 +14,8 @@ export class Stock {
     this.open = 0;
     this.symbol = '';
   }
+
+  equals(obj: Stock): boolean {
+    return this.symbol === obj.symbol;
+  }
 }

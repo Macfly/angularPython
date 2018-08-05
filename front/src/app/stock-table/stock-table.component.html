@@ -1,0 +1,50 @@
+<mat-table [dataSource]="stocks" class="mat-elevation-z8">
+  <ng-container matColumnDef="symbol">
+    <mat-header-cell *matHeaderCellDef> Symbol</mat-header-cell>
+    <mat-cell *matCellDef="let stock"> {{stock.symbol}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="open">
+    <mat-header-cell *matHeaderCellDef> Open</mat-header-cell>
+    <mat-cell *matCellDef="let stock"> {{stock.open}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="last">
+    <mat-header-cell *matHeaderCellDef> Last</mat-header-cell>
+    <mat-cell *matCellDef="let stock"
+              [ngClass]="{'last-positive' : stock.change > 0, 'last-negative' : stock.change < 0}">
+      {{stock.last}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="change">
+    <mat-header-cell *matHeaderCellDef> Change</mat-header-cell>
+    <mat-cell *matCellDef="let stock"
+              [ngClass]="{'change-positive' : stock.change > 0, 'change-negative' : stock.change < 0}"> {{stock.change}}
+      <mat-icon *ngIf="stock.change > 0">arrow_drop_up</mat-icon>
+      <mat-icon *ngIf="stock.change < 0">arrow_drop_down</mat-icon>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="high">
+    <mat-header-cell *matHeaderCellDef> High</mat-header-cell>
+    <mat-cell *matCellDef="let stock"> {{stock.high}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="low">
+    <mat-header-cell *matHeaderCellDef> Low</mat-header-cell>
+    <mat-cell *matCellDef="let stock"> {{stock.low}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="unwatch">
+    <mat-header-cell *matHeaderCellDef> Unwatch</mat-header-cell>
+    <mat-cell *matCellDef="let stock">
+      <button matSuffix mat-raised-button color="primary" (click)="onRemoveStock(stock.symbol)">
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

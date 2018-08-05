@@ -24,7 +24,7 @@ def simulate_market(stock_input=None):
     if stock_input:
         stock = next((item for item in stocks if item["symbol"] == stock_input))
     else:
-        index = 0  # math.floor(random.uniform(0.0, 1.0) * len(stocks))
+        index = math.floor(random.uniform(0.0, 1.0) * len(stocks))
         stock = stocks[index]
     max_change = stock['open'] * 0.005
     change = max_change - random.uniform(0.0, 1.0) * max_change * 2

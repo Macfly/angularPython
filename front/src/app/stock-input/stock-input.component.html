@@ -1,0 +1,9 @@
+<form class="form-input-stock">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Add stock to watch (GM,GE,MCD,UAL,WMT,AAL,LLY, BAC,JPM,BA)" #stock autocomplete="off">
+    <button matSuffix mat-raised-button color="primary" (click)="onAddStock(stock.value)">
+      <mat-icon>visibility</mat-icon>
+      Watch
+    </button>
+  </mat-form-field>
+</form>

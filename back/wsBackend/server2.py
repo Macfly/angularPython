@@ -31,13 +31,14 @@ def connect():
 def on_join(room):
     print('join room: ' + room)
     join_room(room)
+    stock = simulate_market(room)
+    socketio.emit('stock', stock, room=stock['symbol'])
 
 
 @socketio.on('leave')
 def on_leave(data):
     print("leabe")
-    room = data['room']
-    leave_room(room)
+    leave_room(data)
 
 
 @socketio.on('disconnect')
@@ -50,7 +51,7 @@ def send_market_price():
         print('sending price ws')
         stock = simulate_market()
         socketio.emit('stock', stock, room=stock['symbol'])
-        socketio.sleep(5)
+        socketio.sleep(1)
 
 
 @app.route('/api/market', methods=['GET'])

@@ -18,11 +18,11 @@ export class SocketPriceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.socketService.getQuotes()
-      .subscribe(stock => {
-        this.stock = stock;
-        console.log(this.stock);
-      });
+    // this.sub = this.socketService.getQuotes()
+    //   .subscribe(stock => {
+    //     this.stock = stock;
+    //     console.log(this.stock);
+    //   });
   }
 
   ngOnDestroy() {
