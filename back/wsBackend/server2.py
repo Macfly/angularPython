@@ -1,21 +1,29 @@
 import logging
 import threading
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
+from flask_debugtoolbar import DebugToolbarExtension
 from flask_socketio import SocketIO, join_room, leave_room
 
 from market_engine.market import RandomMarket, simulate_market
 
 app = Flask(__name__)
+app.debug = True
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 CORS(app)
+toolbar = DebugToolbarExtension(app)
 market = RandomMarket()
 thread = None
 thread_lock = threading.Lock()
 
 logging.getLogger('flask_cors').level = logging.DEBUG
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @socketio.on('connect')
@@ -37,7 +45,7 @@ def on_join(room):
 
 @socketio.on('leave')
 def on_leave(data):
-    print("leabe")
+    print("leave")
     leave_room(data)
 
 
